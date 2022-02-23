@@ -5,4 +5,8 @@
 #### Testing Retrieval Of Data
 ![Retrieving](Outputs/TestingRetrievalOfData.png)
 #### Testing Plotting Data
-![Retrieving](Outputs/TestingPlottingData.png)
+![Plotting](Outputs/TestingPlottingData.png)
+#### Testing Plotting Our Moving Average
+##### Notice how 'NaN appears for the first 100 rows, this is because we used a 100 day MA
+![Moving Average](Outputs/TestingMovingAvg.png)
+
