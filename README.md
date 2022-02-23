@@ -2,4 +2,7 @@
 
 # Step By Step Terminal Testing Output
 
+#### Testing Retrieval Of Data
 ![Retrieving](Outputs/TestingRetrievalOfData.png)
+#### Testing Plotting Data
+![Retrieving](Outputs/TestingPlottingData.png)
