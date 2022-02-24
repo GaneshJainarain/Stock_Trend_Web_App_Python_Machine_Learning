@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd 
 import matplotlib.pyplot as plt 
 import pandas_datareader as data 
+from sklearn.preprocessing import MinMaxScaler
 
 
 start = '2010-01-01'
@@ -37,5 +38,21 @@ plt.plot(ma100, 'r')
 plt.plot(ma200, 'g')
 
 #Showing our plot
-plt.show()
+#plt.show()
 
+#print(df.shape)
+  
+#Splitting data into training and testing 70/30
+data_training = pd.DataFrame(df['Close'][0:int(len(df)*0.70)])
+data_testing = pd.DataFrame(df['Close'][int(len(df)*0.70): int(len(df))])
+
+print(data_training.shape)
+print(data_testing.shape)
+print(data_training.head())
+print(data_testing.head())
+
+
+
+scaler = MinMaxScaler(feature_range=(0,1))
+data_training_array = scaler.fit_transform(data_training)
+#print(data_training_array)
