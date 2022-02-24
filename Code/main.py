@@ -23,11 +23,19 @@ print(df.tail())
 #plt.show()
 
 #Getting Our Moving Averages
+#MA100
 ma100 = df.Close.rolling(100).mean()
 print(ma100)
+#MA200
+ma200 = df.Close.rolling(200).mean()
+print(ma200)
 
 #Plotting our moving average ontop of our stock data
 plt.figure(figsize = (12,6))
 plt.plot(df.Close)
 plt.plot(ma100, 'r')
+plt.plot(ma200, 'g')
+
+#Showing our plot
 plt.show()
+

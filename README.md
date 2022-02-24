@@ -6,7 +6,12 @@
 ![Retrieving](Outputs/TestingRetrievalOfData.png)
 #### Testing Plotting Data
 ![Plotting](Outputs/TestingPlottingData.png)
-#### Testing Plotting Our Moving Average
+#### Testing Plotting Our Moving Average 100
 ##### Notice how 'NaN appears for the first 100 rows, this is because we used a 100 day MA
-![Moving Average](Outputs/TestingMovingAvg.png)
+![Moving Average 100](Outputs/TestingMovingAvg.png)
+#### Testing Plotting Our Moving Average's
+##### Red is our 100MA and Green is our 200MA
+![Moving Average's](Outputs/TestingPlottingMAs.png)
+
+
 
