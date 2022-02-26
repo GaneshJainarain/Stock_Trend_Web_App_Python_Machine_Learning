@@ -3,6 +3,8 @@ import pandas as pd
 import matplotlib.pyplot as plt 
 import pandas_datareader as data 
 from sklearn.preprocessing import MinMaxScaler
+from keras.layers import Dense, Dropout, LSTM
+from
 
 
 start = '2010-01-01'
@@ -74,11 +76,14 @@ for i in range(100, data_training_array.shape[0]):
     #appending data in our x_train, (i-100 because it should start from 0)
     x_train.append(data_training_array[i-100: i])
     y_train.append(data_training_array[i, 0])
+#converting our arrays into numpy arrays so we can provide the data to our LSTM model
+x_train, y_train = np.array(x_train), np.array(y_train)
+
+#Machine Learning Moddel
 
 
 
-
-print(data_training_array.shape)
+#print(data_training_array.shape)
 
 '''Lets take an example
 The logic we are going to follow when predicting our values is simple.
