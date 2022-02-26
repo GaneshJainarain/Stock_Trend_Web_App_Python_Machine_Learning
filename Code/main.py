@@ -46,21 +46,39 @@ plt.plot(ma200, 'g')
 data_training = pd.DataFrame(df['Close'][0:int(len(df)*0.70)])
 data_testing = pd.DataFrame(df['Close'][int(len(df)*0.70): int(len(df))])
 
-print(data_training.shape)
-print(data_testing.shape)
-print(data_training.head())
-print(data_testing.head())
+#print(data_training.shape)
+#print(data_testing.shape)
+#print(data_training.head())
+#print(data_testing.head())
 
 
 #Scaling down our training data
 scaler = MinMaxScaler(feature_range=(0,1))
 #converting to array, scaler.fit_transform auto gives us an array
 data_training_array = scaler.fit_transform(data_training)
-print(data_training_array)
+#print(data_training_array)
 
 #Now we divide our data into an X AND Y train
 x_train = []
 y_train = []
+
+#Inserting values into our lists
+#We start at 100 because we are taking a 100ma
+
+#If we observe print(data_training_array.shape) we get (1761,1) meaning we have 1761 rows of
+#data in the data_training_array var
+
+#So instead of hard coding 1761 into the loop we can make it 
+#dynamic and input data_training_array.shape[0] because 1761 is at our 0th index
+for i in range(100, data_training_array.shape[0]):
+    #appending data in our x_train, (i-100 because it should start from 0)
+    x_train.append(data_training_array[i-100: i])
+    y_train.append(data_training_array[i, 0])
+
+
+
+
+print(data_training_array.shape)
 
 '''Lets take an example
 The logic we are going to follow when predicting our values is simple.
@@ -79,13 +97,5 @@ and now lets say we predicted that the 11th day would yield us 39 in order to pr
 our new input would be
 36, 33, 40, 39, 38, 37, 42, 44, 38, 39*
 since we are measuring the 10day moving average here we take the past 10 days this becomes our new x_train
-
-
-
-
-
-
-
-
 '''
 
