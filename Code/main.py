@@ -52,7 +52,40 @@ print(data_training.head())
 print(data_testing.head())
 
 
-
+#Scaling down our training data
 scaler = MinMaxScaler(feature_range=(0,1))
+#converting to array, scaler.fit_transform auto gives us an array
 data_training_array = scaler.fit_transform(data_training)
-#print(data_training_array)
+print(data_training_array)
+
+#Now we divide our data into an X AND Y train
+x_train = []
+y_train = []
+
+'''Lets take an example
+The logic we are going to follow when predicting our values is simple.
+lets say we are given 10 days worth of stock data and we want to predict the 11th day
+34, 36, 33, 40, 39, 38, 37, 42, 44, 38, --> Predict(11th day)
+
+Note that the value on the 11th day is always dependent on the previous 10 days
+and will be in the same range as the previous data give or take.
+
+The values of the 10 days are the x_train and the 11th day will become the y_train.
+Now what if we want to predict the 12th day? The process is still the same, we take the past 10 days
+we dont look ath the first day any more, and now the 11th day really is our 10th day. 
+for example our original input was 
+34, 36, 33, 40, 39, 38, 37, 42, 44, 38, 
+and now lets say we predicted that the 11th day would yield us 39 in order to predict the 12th day
+our new input would be
+36, 33, 40, 39, 38, 37, 42, 44, 38, 39*
+since we are measuring the 10day moving average here we take the past 10 days this becomes our new x_train
+
+
+
+
+
+
+
+
+'''
+
