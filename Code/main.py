@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import pandas_datareader as data 
 from sklearn.preprocessing import MinMaxScaler
 from keras.layers import Dense, Dropout, LSTM
-from
+from keras.models import Sequential
 
 
 start = '2010-01-01'
@@ -80,7 +80,24 @@ for i in range(100, data_training_array.shape[0]):
 x_train, y_train = np.array(x_train), np.array(y_train)
 
 #Machine Learning Moddel
+print(x_train.shape)
+# (1661, 100, 1)
 
+model = Sequential()
+model.add(LSTM(units = 50, activation = 'relu', return_sequences = True, 
+input_shape=(x_train.shape[1], 1)))
+model.add(Dropout(0.2))
+#input shape, if we observe the x_train.shape we see we get 1661 rows and 100 columns
+#100 columns because we defined the step to be 100,
+#The first 100 vals have become our colms, they act as features for predicting our y train
+model.add(LSTM(units = 60, activation = 'relu', return_sequences = True))
+model.add(Dropout(0.3))
+
+model.add(LSTM(units = 80, activation = 'relu', return_sequences = True))
+model.add(Dropout(0.4)) 
+
+model.add(LSTM(units = 120, activation = 'relu'))
+model.add(Dropout(0.5))
 
 
 #print(data_training_array.shape)
