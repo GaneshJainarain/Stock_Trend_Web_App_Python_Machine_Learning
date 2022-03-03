@@ -14,6 +14,9 @@
 ![Moving Average's](Outputs/TestingPlottingMAs.png)
 #### Splitting our Data 70/30, 70 for training 30 for testing
 ![Splitting our Data](Outputs/SplittingOurData.png)
+#### Summary of our Machine Learning Model
+![ML Model](Outputs/SummaryOfMLModel.png)
+
 
 
 
