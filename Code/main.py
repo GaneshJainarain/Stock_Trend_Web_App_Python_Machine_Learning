@@ -34,10 +34,10 @@ ma200 = df.Close.rolling(200).mean()
 #print(ma200)
 
 #Plotting our moving average ontop of our stock data
-plt.figure(figsize = (12,6))
-plt.plot(df.Close)
-plt.plot(ma100, 'r')
-plt.plot(ma200, 'g')
+#plt.figure(figsize = (12,6))
+#plt.plot(df.Close)
+#plt.plot(ma100, 'r')
+#plt.plot(ma200, 'g')
 
 #Showing our plot
 #plt.show()
@@ -103,11 +103,11 @@ model.add(Dropout(0.5))
 model.add(Dense(units = 1))
 
 #print(model.summary())
-'''
+
 model.compile(optimizer='adam', loss= "mean_squared_error")
 model.fit(x_train, y_train, epochs = 50)
 model.save('keras_model.h5')
-'''
+
 
 #Predicting values where we use the testing data, 30% was for testing
 
@@ -165,12 +165,37 @@ for i in range(100, input_data.shape[0]):
     y_test.append(input_data[i, 0])
 
 x_test, y_test = np.array(x_test), np.array(y_test)
-print(x_test.shape)
-print(y_test.shape)
+#print(x_test.shape)
+#print(y_test.shape)
 #(755, 100, 1)
 #(755,)
 
 #Making our Predictions
+
+y_predicted = model.predict(x_test)
+print(y_predicted.shape)
+#(755, 1)
+#print(y_test)
+#print(y_predicted)
+'''
+All these values are scaled down, so we find the factror that they were scaled down
+'''
+#print(scaler.scale_)
+#[0.02099517] -- Factor in which data was scaled down
+#We need to divide y test and y predicted by this scale factor
+scale_factor = 0.02099517
+y_predicted = y_predicted / scale_factor
+y_test = y_test / scale_factor
+
+plt.figure(figsize=(12,6))
+plt.plot(y_test, 'b', label = 'Original Price')
+plt.plot(y_predicted, 'r', label = 'Predicted Price')
+plt.xlabel('Time')
+plt.ylabel('Price')
+plt.legend()
+plt.show()
+
+
 
 
 
