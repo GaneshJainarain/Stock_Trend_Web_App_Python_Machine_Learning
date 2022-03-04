@@ -18,8 +18,8 @@ df.head()
 df = df.drop(['Date', 'Adj Close'], axis = 1)
 
 #Printing our data to the terminal
-print(df.head())
-print(df.tail())
+#print(df.head())
+#print(df.tail())
 
 #Plotting
 #plt.plot(df.Close)
@@ -28,10 +28,10 @@ print(df.tail())
 #Getting Our Moving Averages
 #MA100
 ma100 = df.Close.rolling(100).mean()
-print(ma100)
+#print(ma100)
 #MA200
 ma200 = df.Close.rolling(200).mean()
-print(ma200)
+#print(ma200)
 
 #Plotting our moving average ontop of our stock data
 plt.figure(figsize = (12,6))
@@ -80,7 +80,7 @@ for i in range(100, data_training_array.shape[0]):
 x_train, y_train = np.array(x_train), np.array(y_train)
 
 #Machine Learning Moddel
-print(x_train.shape)
+#print(x_train.shape)
 # (1661, 100, 1)
 
 model = Sequential()
@@ -99,8 +99,81 @@ model.add(Dropout(0.4))
 model.add(LSTM(units = 120, activation = 'relu'))
 model.add(Dropout(0.5))
 
+#Dense layer only has 1 unit because we are only predicting 1 value
+model.add(Dense(units = 1))
 
-#print(data_training_array.shape)
+#print(model.summary())
+'''
+model.compile(optimizer='adam', loss= "mean_squared_error")
+model.fit(x_train, y_train, epochs = 50)
+model.save('keras_model.h5')
+'''
+
+#Predicting values where we use the testing data, 30% was for testing
+
+#print(data_testing.head())
+#1761  28.955000
+#1762  29.037500
+#1763  29.004999
+#1764  29.152500
+#1765  29.477501
+'''
+observe how we get the 1761 value, in order to get this alue we need
+the past 100 days, according to tie series analysis, 
+the 100 values are located in our training data, so we must fetch them and append thosse 100 days/vals 
+'''
+#print(data_training.tail(100))
+#1661  27.202499
+#1662  27.000000
+#1663  26.982500
+#1664  27.045000
+#1665  27.370001
+#...         ...
+#1756  29.072500
+#1757  29.129999
+#1758  29.315001
+#1759  29.190001
+#1760  29.182501
+'''
+The 100 values we need to append ^
+'''
+#We need previous 100 days, 
+past_100_days = data_training.tail(100)
+final_df = past_100_days.append(data_testing, ignore_index=True)
+
+#Our testing data
+#print(final_df.head())
+#0  27.202499
+#1  27.000000
+#2  26.982500
+#3  27.045000
+#4  27.370001
+'''
+Notice how this data isnt scaled down, we can scale it down with a scaler transform
+'''
+input_data = scaler.fit_transform(final_df)
+#print(input_data)
+#print(input_data.shape)
+#(855, 1)
+
+# Working on our test now
+x_test = []
+y_test = []
+
+for i in range(100, input_data.shape[0]):
+    x_test.append(input_data[i-100: i])
+    y_test.append(input_data[i, 0])
+
+x_test, y_test = np.array(x_test), np.array(y_test)
+print(x_test.shape)
+print(y_test.shape)
+#(755, 100, 1)
+#(755,)
+
+#Making our Predictions
+
+
+
 
 '''Lets take an example
 The logic we are going to follow when predicting our values is simple.
