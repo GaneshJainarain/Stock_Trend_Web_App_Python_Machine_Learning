@@ -16,6 +16,8 @@
 ![Splitting our Data](Outputs/SplittingOurData.png)
 #### Summary of our Machine Learning Model
 ![ML Model](Outputs/SummaryOfMLModel.png)
+#### Predicting our values and plotting them
+![Prediction](Outputs/PlottingPredictedPrice.png)
 
 
 
