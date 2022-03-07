@@ -18,6 +18,8 @@
 ![ML Model](Outputs/SummaryOfMLModel.png)
 #### Predicting our values and plotting them
 ![Prediction](Outputs/PlottingPredictedPrice.png)
+#### Demo for our Web app, showcasing the user input data display along with the data and time chart
+![Demo1](Outputs/WebApp1.png)
 
 
 
