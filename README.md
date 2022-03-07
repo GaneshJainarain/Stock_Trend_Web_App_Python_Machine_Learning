@@ -19,6 +19,8 @@
 ![Splitting our Data](Outputs/SplittingOurData.png)
 ### Summary of our Machine Learning Model
 ![ML Model](Outputs/SummaryOfMLModel.png)
+### Training our ML model Epochs
+![Training](Outputs/TrainingModel.png)
 ### Predicting our values and plotting them
 ![Prediction](Outputs/PlottingPredictedPrice.png)
 ### Demo for our Web app, showcasing the user input data display along with the data and time chart

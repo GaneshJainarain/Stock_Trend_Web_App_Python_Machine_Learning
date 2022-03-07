@@ -7,7 +7,7 @@ from keras.layers import Dense, Dropout, LSTM
 from keras.models import Sequential
 
 
-start = '2010-01-01'
+start = '2007-03-03'
 end = '2022-03-03'
 #will make this more dynamic but for now we are testing getting data
 df = data.DataReader('AAPL', 'yahoo', start, end)
