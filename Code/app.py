@@ -7,6 +7,7 @@ from keras.layers import Dense, Dropout, LSTM
 from keras.models import Sequential
 from keras import models    
 import streamlit as st
+from sklearn.metrics import r2_score
 
 
 
@@ -87,6 +88,8 @@ y_predicted = model.predict(x_test)
 scale_factor = 0.02099517
 y_predicted = y_predicted / scale_factor
 y_test = y_test / scale_factor
+r_sqaured = r2_score(y_test, y_predicted)
+print(r_sqaured)
 
 st.subheader('Predictions vs Original')
 fig2 = plt.figure(figsize=(12,6))

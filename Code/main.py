@@ -5,10 +5,10 @@ import pandas_datareader as data
 from sklearn.preprocessing import MinMaxScaler
 from keras.layers import Dense, Dropout, LSTM
 from keras.models import Sequential
-
+from sklearn.metrics import r2_score
 
 start = '2007-03-03'
-end = '2022-03-03'
+end = '2022-09-09'
 #will make this more dynamic but for now we are testing getting data
 df = data.DataReader('AAPL', 'yahoo', start, end)
 
@@ -105,7 +105,7 @@ model.add(Dense(units = 1))
 #print(model.summary())
 
 model.compile(optimizer='adam', loss= "mean_squared_error")
-model.fit(x_train, y_train, epochs = 50)
+model.fit(x_train, y_train, epochs = 100)
 model.save('keras_model.h5')
 
 
@@ -173,7 +173,7 @@ x_test, y_test = np.array(x_test), np.array(y_test)
 #Making our Predictions
 
 y_predicted = model.predict(x_test)
-print(y_predicted.shape)
+#print(y_predicted.shape)
 #(755, 1)
 #print(y_test)
 #print(y_predicted)
@@ -186,6 +186,8 @@ All these values are scaled down, so we find the factror that they were scaled d
 scale_factor = 0.02099517
 y_predicted = y_predicted / scale_factor
 y_test = y_test / scale_factor
+r_sqaured = r2_score(y_test, y_predicted)
+print(r_sqaured)
 
 plt.figure(figsize=(12,6))
 plt.plot(y_test, 'b', label = 'Original Price')
